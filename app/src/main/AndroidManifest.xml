@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest
+    package="com.example.vladasverkelis.myitems"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_add_shopping_cart_black_24dp"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".CatalogActivity"
+            android:label="Items">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".EditorActivity"
+            android:label="Add an Item"
+            android:theme="@style/EditorTheme"
+            android:parentActivityName=".CatalogActivity">
+            <!--Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CatalogActivity" />
+        </activity>
+        <activity android:name=".DetailsActivity"
+            android:label="Details of the item"
+            android:theme="@style/DetailsTheme"
+            android:parentActivityName=".CatalogActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <data android:scheme="mailto" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!--Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CatalogActivity" />
+        </activity>
+        <provider
+            android:authorities="com.example.vladasverkelis.myitems"
+            android:name=".data.ItemProvider"
+            android:exported="false"/>
+    </application>
+
+</manifest>
